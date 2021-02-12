@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  # ----------------------------------------------------------------------------
+  # Config Server
+  # ----------------------------------------------------------------------------
+  dc-config-server:
+    image: hackaton-group1/config-server:latest
+    ports:
+      - '8088:8088'
+  # ----------------------------------------------------------------------------
+  # VirtualCard Domain
+  # ----------------------------------------------------------------------------
+  # dc-data-virtualcard-v1:
+  #   image: hackaton-group1/data-virtualcard-v1:latest
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=docker
+  #     - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+  #   ports:
+  #     - '8072:8072'
+  #   depends_on: 
+  #     - 'dc-config-server'
+  # dc-business-virtualcard-v1:
+  #   image: hackaton-group1/business-virtualcard-v1:latest
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=docker
+  #     - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+  #   ports:
+  #     - '8071:8071'
+  #   depends_on: 
+  #     - 'dc-data-virtualcard-v1'
+  # ----------------------------------------------------------------------------
+  # Channel
+  # ----------------------------------------------------------------------------
+  # dc-channel-virtualcard-app-v1:
+  #   image: hackaton-group1/channel-virtualcard-app-v1:latest
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=docker
+  #     - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+  #   ports:
+  #     - '8080:8080'
+  #   depends_on: 
+  #     - 'dc-business-virtualcard-v1'
+  

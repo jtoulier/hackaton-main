@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "4de31c58-93be-4c11-b01c-e3c510e67fae",
+		"name": "Hackaton-Group1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "config-server",
+			"item": [
+				{
+					"name": "/channel-virtualcard-app-v1 CONFIG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{config-server-port}}/channel-virtualcard-app-v1/docker",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{config-server-port}}",
+							"path": [
+								"channel-virtualcard-app-v1",
+								"docker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/business-virtualcard-v1 CONFIG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{config-server-port}}/business-virtualcard-v1/local",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{config-server-port}}",
+							"path": [
+								"business-virtualcard-v1",
+								"local"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/data-virtualcard-v1 CONFIG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{config-server-port}}/data-virtualcard-v1/default",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{config-server-port}}",
+							"path": [
+								"data-virtualcard-v1",
+								"default"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/data-virtualcard-v1",
+			"item": [
+				{
+					"name": "DUMMY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{data-virtualcard-v1-port}}/data-customer-v1/xxx",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{data-virtualcard-v1-port}}",
+							"path": [
+								"data-customer-v1",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/business-virtualcard-v1",
+			"item": [
+				{
+					"name": "DUMMY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{business-virtualcard-v1-port}}/business-virtualcard-v1/xxx",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{business-virtualcard-v1-port}}",
+							"path": [
+								"business-virtualcard-v1",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/channel-virtualcard-app-v1",
+			"item": [
+				{
+					"name": "DUMMY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:{{channel-virtualcard-app-v1-port}}/channel-virtualcard-app-v1/xxx",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{channel-virtualcard-app-v1-port}}",
+							"path": [
+								"channel-virtualcard-app-v1",
+								"xxx"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cic",
+			"value": "CLIA00005678"
+		},
+		{
+			"key": "tio-aux",
+			"value": "PAGPER"
+		},
+		{
+			"key": "product-improvement-id",
+			"value": "1"
+		},
+		{
+			"key": "card-number",
+			"value": "4557880112345678"
+		}
+	]
+}
