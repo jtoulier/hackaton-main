@@ -68,30 +68,6 @@
 			]
 		},
 		{
-			"name": "/data-virtualcard-v1",
-			"item": [
-				{
-					"name": "DUMMY",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{data-virtualcard-v1-port}}/data-customer-v1/xxx",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{data-virtualcard-v1-port}}",
-							"path": [
-								"data-customer-v1",
-								"xxx"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "/business-virtualcard-v1",
 			"item": [
 				{
@@ -119,19 +95,118 @@
 			"name": "/channel-virtualcard-app-v1",
 			"item": [
 				{
-					"name": "DUMMY",
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dni\": \"{{dni}}\",\r\n    \"amount\": {{amount}},\r\n    \"expirationDate\": \"{{expiration-date}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}:{{channel-virtualcard-app-v1-port}}/channel-virtualcard-app-v1/xxx",
+							"raw": "{{base_url}}:{{channel-virtualcard-app-v1-port}}/digital-card",
 							"host": [
 								"{{base_url}}"
 							],
 							"port": "{{channel-virtualcard-app-v1-port}}",
 							"path": [
-								"channel-virtualcard-app-v1",
-								"xxx"
+								"digital-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grabar tarjeta virtual",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dni\": \"{{dni}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:{{channel-virtualcard-app-v1-port}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{channel-virtualcard-app-v1-port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener datos del cliente",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dni\": \"{{dni}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:{{channel-virtualcard-app-v1-port}}/customer-summary/{{dni}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "{{channel-virtualcard-app-v1-port}}",
+							"path": [
+								"customer-summary",
+								"{{dni}}"
 							]
 						}
 					},
@@ -162,20 +237,20 @@
 	],
 	"variable": [
 		{
-			"key": "cic",
-			"value": "CLIA00005678"
+			"key": "dni",
+			"value": "20070913"
 		},
 		{
-			"key": "tio-aux",
-			"value": "PAGPER"
+			"key": "password",
+			"value": "111111"
 		},
 		{
-			"key": "product-improvement-id",
+			"key": "amount",
 			"value": "1"
 		},
 		{
-			"key": "card-number",
-			"value": "4557880112345678"
+			"key": "expiration-date",
+			"value": "2021-04-19\n"
 		}
 	]
 }

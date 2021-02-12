@@ -1,0 +1,13 @@
+PARA DESPLEGAR EN MAQ VIRTUAL
+
+CONTAINER REGISTRY: acrpurplebcp.azurecr.io
+USERNAME:  acrpurplebcp
+eP0hlI6vbyE77yuC/X=ZXGECBbMZ4Zuz
+
+ssh -i bootcamp.pem bootcampuser@70.37.86.87
+
+docker pull acrpurplebcp.azurecr.io/grupo4:0.0.1
+
+docker run -d --name grupo1 -p 8081:8080 acrpurplebcp.azurecr.io/grupo1:latest
+
+curl http://70.37.86.87:8081/customers/credit-lines/20070913
