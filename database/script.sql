@@ -63,8 +63,8 @@ CREATE TABLE group1.virtual_card
 INSERT INTO group1.customer VALUES ('20070913', '111111', 'ZAMORA', 'LEON', 'TANIA');
 INSERT INTO group1.customer VALUES ('09349291', '111111', 'SANTANA', 'CAUNA', 'YASMIN');
 
-INSERT INTO group1.credit_line (dni, authorized_amount, used_amount) VALUES ('20070913', 7000, 636.7);
-INSERT INTO group1.credit_line (dni, authorized_amount, used_amount) VALUES ('09349291', 15800, 1659.71);
+INSERT INTO group1.credit_line (dni, authorized_amount, used_amount) VALUES ('20070913', 7000, 2780);
+INSERT INTO group1.credit_line (dni, authorized_amount, used_amount) VALUES ('09349291', 15800, 3970);
 
 INSERT INTO group1.available_card VALUES ('4280780012858941', '839', 'Y');
 INSERT INTO group1.available_card VALUES ('4280780082269845', '845', 'Y');
