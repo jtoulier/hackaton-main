@@ -1,0 +1,81 @@
+Paso 1 - login
+------
+Boton: LOGIN
+login
+    request
+        dni
+        password
+    response
+        Customer
+
+
+get-info
+    request
+        dni
+    response
+        creditLineBalance (authorized menos used)
+        List<CustomerCard> siempre y cuando la expiration_date < hoy
+
+Paso 2 - Lista de Tarjetas vigentes y Saldo para pedir nueva TArjetas
+---------------------------------------------------------------------
+Muestro datos personales (Customer)
+Muestro Linea de Credito (saldo)
+Muestro lista de tarjetas vigentes (****-cardnumber (ojo para ocultar/mostrar plano), fecha exp, monto)
+
+Acciones
+    BOTON: Solicitar tarjeta
+        LLeva al paso 3
+
+PASO 3 - Mostrar 
+    Mostrar Linea de Credito   (70 mil)
+    Digitar Monto de la Tarjeta  (2mil)
+    Digitar (hoy <= Fecha de Expiracion <= 1 mes)   (18-feb)
+    BOTON: Confirmar
+
+PASO 4
+    assignCard
+        request
+            dni
+            fechaExpiracion
+            monto
+        response
+            cardNumber
+            cvv
+        logica:
+            tomar la primera tarjeta disponible del pool de tarjeatas
+            valida que el monto de la tarjeta cumpla el saldo de la linea de Credito
+            graba en customer-card
+            graba en available-card que la tarjeta se esta usando
+            actualiza en credit-line el monto usado
+
+    Mostrar
+        cardNumber
+        cvv
+        monto de la tarjeta
+    BOTON: Volver al Paso 2
+
+
+ADICIONALES
+* Compartir tarjeta para un tercero
+* Ver detalle de consumo de tarjeta
+* Modificar tarjeta vigente
+
+
+BD
+    Joseph
+
+FRONT
+    Jhonny
+    Sebas
+        Proyecta
+
+BACK
+    Jean Pierre
+        Contrato
+        3 metodos
+
+PPT
+    Joseph
+
+PITCH
+    Jean Pierre

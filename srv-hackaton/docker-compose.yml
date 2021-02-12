@@ -1,0 +1,87 @@
+version: '3.8'
+services:
+  # ----------------------------------------------------------------------------
+  # Config Server
+  # ----------------------------------------------------------------------------
+  dc-config-server:
+    image: reto2.azurecr.io/config-server:latest
+    ports:
+      - '8088:8088'
+  # ----------------------------------------------------------------------------
+  # Customer Domain
+  # ----------------------------------------------------------------------------
+  dc-data-customer-v1:
+    image: reto2.azurecr.io/data-customer-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8072:8072'
+    depends_on: 
+      - 'dc-config-server'
+  dc-business-customer-v1:
+    image: reto2.azurecr.io/business-customer-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8071:8071'
+    depends_on: 
+      - 'dc-data-customer-v1'
+# ----------------------------------------------------------------------------
+# Product Domain
+# ----------------------------------------------------------------------------
+  dc-data-product-v1:
+    image: reto2.azurecr.io/data-product-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8082:8082'
+    depends_on: 
+      - 'dc-config-server'
+  dc-business-product-v1:
+    image: reto2.azurecr.io/business-product-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8081:8081'
+    depends_on: 
+      - 'dc-data-product-v1'
+# ----------------------------------------------------------------------------
+# Improvement Domain
+# ----------------------------------------------------------------------------
+  dc-data-improvement-v1:
+    image: reto2.azurecr.io/data-improvement-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8092:8092'
+    depends_on: 
+      - 'dc-config-server'
+  dc-business-improvement-v1:
+    image: reto2.azurecr.io/business-improvement-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8091:8091'
+    depends_on: 
+      - 'dc-data-improvement-v1'
+  # ----------------------------------------------------------------------------
+  # Channel
+  # ----------------------------------------------------------------------------
+  dc-channel-improvement-wizard-v1:
+    image: reto2.azurecr.io/channel-improvement-wizard-v1:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://host.docker.internal:8088/
+    ports:
+      - '8080:8080'
+    depends_on: 
+      - 'dc-business-customer-v1'
+      - 'dc-business-product-v1'
+      - 'dc-business-improvement-v1'
+  
