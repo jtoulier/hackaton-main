@@ -1,0 +1,54 @@
+POST /login
+----------------------------------------------------
+REQUEST BODY
+{
+    "dni":"77343375",
+    "password":"Password1"
+}
+
+
+RESPONSE BODY 200
+{
+ "dni": "77343375",
+ "firstSurname":"Raffito",
+ "secondSurname":"Rios",
+ "givenName":"Frank"
+}
+
+
+GET /customer-summary/{dni}
+----------------------------------------------------
+RESPONSE BODY 200
+
+{
+    "availableAmount": 4000,
+    "digitalCards":
+    [
+     {
+       "cardNumber":"1234567812345678",
+       "expirartionDate":"12/20",
+       "ccv": 123, 
+       "authorizedAmount": 2000,
+       "availableAmount": 500
+     },
+     {
+       "cardNumber":"1234567812340000",
+       "expirartionDate":"08/21",
+       "ccv": 321, 
+       "authorizedAmount": 3000,
+       "availableAmount": 1500
+     }
+     ]
+}
+
+
+POST /digital-card
+----------------------------------------------------
+REQUEST BODY
+{
+    "dni": "78909745",
+    "amount": 4000,
+    "expirationDate": "04/22"
+}
+
+RESPONSE BODY 201
